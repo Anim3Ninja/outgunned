@@ -1,0 +1,280 @@
+{
+  "characters": [
+    {
+      "slug": "arthur-blackwood",
+      "name": "Arthur Blackwood",
+      "role": "Expedition Investigator",
+      "tagline": "",
+      "portrait": "assets/characters/arthur-blackwood/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/arthur-blackwood/photo-1.jpg",
+          "title": "Watching a Suspect — London, 1934"
+        }
+      ],
+      "documents": [],
+      "backstory": "assets/characters/arthur-blackwood/backstory.txt",
+      "assessment": "assets/characters/arthur-blackwood/recruitment.txt",
+      "sheet": "",
+      "number": 1,
+      "short": "Blackwood",
+      "blurb": "Arthur Blackwood is about 43 in 1934. He spent roughly fifteen years investigating serious crime in London and rose to Detective Inspector at Scotland Yard."
+    },
+    {
+      "slug": "jacques-moreau",
+      "name": "Captain Jacques Moreau",
+      "role": "Maritime Transport and Logistics",
+      "tagline": "",
+      "portrait": "assets/characters/jacques-moreau/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/jacques-moreau/photo-1.jpg",
+          "title": "A Dangerous Game of Cards — Marseille, 1933"
+        },
+        {
+          "src": "assets/characters/jacques-moreau/photo-2.jpg",
+          "title": "The Nighttime Cargo Transfer — Alexandria, 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/jacques-moreau/doc-1.jpg",
+          "title": "Confidential French Police Report — 1933"
+        },
+        {
+          "src": "assets/characters/jacques-moreau/doc-2.jpg",
+          "title": "Translation and Assessment of Marseille Police Report — 1934"
+        }
+      ],
+      "backstory": "assets/characters/jacques-moreau/backstory.txt",
+      "assessment": "assets/characters/jacques-moreau/recruitment.txt",
+      "sheet": "",
+      "number": 2,
+      "short": "Moreau",
+      "blurb": "Jacques Moreau is 35 in 1934. He makes his living carrying freight around the Mediterranean in a small vessel that once belonged to his father."
+    },
+    {
+      "slug": "edward-pembroke",
+      "name": "Edward Pembroke",
+      "role": "Egyptologist and Academic Adviser",
+      "tagline": "",
+      "portrait": "assets/characters/edward-pembroke/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/edward-pembroke/photo-1.jpg",
+          "title": "The Oxford Lecture — 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/edward-pembroke/doc-1.jpg",
+          "title": "Young Oxford Scholar Aids New Egyptian Find — 1926"
+        }
+      ],
+      "backstory": "assets/characters/edward-pembroke/backstory.txt",
+      "assessment": "assets/characters/edward-pembroke/recruitment.txt",
+      "sheet": "",
+      "number": 3,
+      "short": "Pembroke",
+      "blurb": "Edward Pembroke is 33 in 1934. He is the younger son of a British viscount, an Oxford lecturer in Egyptology, and the young archaeologist credited with discovering a side chamber near Cairo in 1926."
+    },
+    {
+      "slug": "evie-sullivan",
+      "name": "Evelyn “Evie” Sullivan",
+      "role": "Expedition Correspondent and Researcher",
+      "tagline": "",
+      "portrait": "assets/characters/evie-sullivan/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/evie-sullivan/photo-1.jpg",
+          "title": "Society Reporter at a Chicago Gala — 1931"
+        },
+        {
+          "src": "assets/characters/evie-sullivan/photo-2.jpg",
+          "title": "The Courthouse Shooting — Chicago, 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/evie-sullivan/doc-1.jpg",
+          "title": "Hospital Discharge Report — 1934"
+        },
+        {
+          "src": "assets/characters/evie-sullivan/doc-2.jpg",
+          "title": "Hospital Account Settled by Anonymous Benefactor — 1934"
+        }
+      ],
+      "backstory": "assets/characters/evie-sullivan/backstory.txt",
+      "assessment": "assets/characters/evie-sullivan/recruitment.txt",
+      "sheet": "",
+      "number": 4,
+      "short": "Sullivan",
+      "blurb": "Evelyn Sullivan is 27 in 1934, a working-class Chicago woman who talked her way into the newspaper business and earned a place on its investigative beat. She’s blonde, lively and easy to talk to."
+    },
+    {
+      "slug": "jo-mercer",
+      "name": "Josephine “Jo” Mercer",
+      "role": "Motor Transport and Mechanical Support",
+      "tagline": "",
+      "portrait": "assets/characters/jo-mercer/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/jo-mercer/photo-1.jpg",
+          "title": "Evacuating the Wounded — France, 1918"
+        },
+        {
+          "src": "assets/characters/jo-mercer/photo-2.jpg",
+          "title": "The Death Valley Garage Confrontation — 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/jo-mercer/doc-1.jpg",
+          "title": "Private Joseph Mercer — Wartime Military Identity Card, 1918"
+        }
+      ],
+      "backstory": "assets/characters/jo-mercer/backstory.txt",
+      "assessment": "assets/characters/jo-mercer/recruitment.txt",
+      "sheet": "",
+      "number": 5,
+      "short": "Mercer",
+      "blurb": "Josephine Mercer is 33 in 1934. She’s an African American freight driver and mechanic from Brooklyn who now makes her living hauling loads through Death Valley."
+    },
+    {
+      "slug": "charles-hargreaves",
+      "name": "Major Charles Edmund Hargreaves",
+      "role": "Expedition Security and Field Command",
+      "tagline": "",
+      "portrait": "assets/characters/charles-hargreaves/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/charles-hargreaves/photo-1.jpg",
+          "title": "The Salisbury Plain Exercise — 1922"
+        },
+        {
+          "src": "assets/characters/charles-hargreaves/photo-2.jpg",
+          "title": "A Night of War Stories — Gibraltar, 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/charles-hargreaves/doc-1.jpg",
+          "title": "Major Hargreaves — British Army Identity Certificate, 1921"
+        }
+      ],
+      "backstory": "assets/characters/charles-hargreaves/backstory.txt",
+      "assessment": "assets/characters/charles-hargreaves/recruitment.txt",
+      "sheet": "",
+      "number": 6,
+      "short": "Hargreaves",
+      "blurb": "Major Charles Edmund Hargreaves is 60 in 1934. He’s a retired officer of the Royal Warwickshire Regiment, a veteran of two wars and a widower living near Leamington Spa."
+    },
+    {
+      "slug": "margaret-ashford",
+      "name": "Margaret Ashford",
+      "role": "Security and Intelligence Adviser",
+      "tagline": "",
+      "portrait": "assets/characters/margaret-ashford/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/margaret-ashford/photo-1.jpg",
+          "title": "Undercover in Berlin — 1918"
+        },
+        {
+          "src": "assets/characters/margaret-ashford/photo-2.jpg",
+          "title": "An Evening Alone — Private Surveillance, 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/margaret-ashford/doc-1.jpg",
+          "title": "Margaret Ashford — Intelligence Identity Certificate, 1929"
+        }
+      ],
+      "backstory": "assets/characters/margaret-ashford/backstory.txt",
+      "assessment": "assets/characters/margaret-ashford/recruitment.txt",
+      "sheet": "",
+      "number": 7,
+      "short": "Ashford",
+      "blurb": "Margaret Ashford is 35 in 1934. She served undercover in the Great War, stayed in British military intelligence after the armistice and rose to Staff Sergeant before leaving the service."
+    },
+    {
+      "slug": "shenanigans-olier",
+      "name": "Shenanigans O’Lier",
+      "role": "Expedition Guide and Field Scout",
+      "tagline": "",
+      "portrait": "assets/characters/shenanigans-olier/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/shenanigans-olier/photo-1.jpg",
+          "title": "Rescuing Frobisher — Amazon, 1932"
+        },
+        {
+          "src": "assets/characters/shenanigans-olier/photo-2.jpg",
+          "title": "The Amazon Hotel Veranda — 1934"
+        }
+      ],
+      "documents": [
+        {
+          "src": "assets/characters/shenanigans-olier/doc-1.jpg",
+          "title": "Frobisher’s Raging Amazon Tall Tale — 1932"
+        }
+      ],
+      "backstory": "assets/characters/shenanigans-olier/backstory.txt",
+      "assessment": "assets/characters/shenanigans-olier/recruitment.txt",
+      "sheet": "",
+      "number": 8,
+      "short": "O’Lier",
+      "blurb": "Shenanigans O’Lier is about 30 in 1934, an Irish-American expedition guide who works out of a small river-port town in the South American Amazon basin."
+    },
+    {
+      "slug": "sophie-whitfield",
+      "name": "Sophie Whitfield",
+      "role": "Manuscript and Inscriptions Specialist",
+      "tagline": "",
+      "portrait": "assets/characters/sophie-whitfield/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/sophie-whitfield/photo-1.jpg",
+          "title": "The Overlooked Scholar — British Museum, 1932"
+        },
+        {
+          "src": "assets/characters/sophie-whitfield/photo-2.jpg",
+          "title": "Research in the Oxford Archive — 1934"
+        }
+      ],
+      "documents": [],
+      "backstory": "assets/characters/sophie-whitfield/backstory.txt",
+      "assessment": "assets/characters/sophie-whitfield/recruitment.txt",
+      "sheet": "",
+      "number": 9,
+      "short": "Whitfield",
+      "blurb": "Sophie Whitfield is 29 in 1934. She’s an Oxford-educated researcher who specialises in ancient Egyptian texts and the restoration of damaged manuscripts."
+    },
+    {
+      "slug": "walter-pritchard",
+      "name": "Walter Pritchard",
+      "role": "Expedition Pilot and Aerial Reconnaissance",
+      "tagline": "",
+      "portrait": "assets/characters/walter-pritchard/portrait.jpg",
+      "photos": [
+        {
+          "src": "assets/characters/walter-pritchard/photo-1.jpg",
+          "title": "The Air-Racing Champion — Signed Publicity Photo, 1934"
+        },
+        {
+          "src": "assets/characters/walter-pritchard/photo-2.jpg",
+          "title": "Aviation Charity Gala — New York, 1934"
+        }
+      ],
+      "documents": [],
+      "backstory": "assets/characters/walter-pritchard/backstory.txt",
+      "assessment": "assets/characters/walter-pritchard/recruitment.txt",
+      "sheet": "",
+      "number": 10,
+      "short": "Pritchard",
+      "blurb": "Walter Pritchard is 26 in 1934, a Detroit-born air-racing champion, aircraft designer and one of the most recognisable faces in American aviation. He’s tall and athletic, with flowing beach-blond hair and a small, carefully kept moustache."
+    }
+  ],
+  "_help": "Edit role (job title) and blurb (brief description) for each character. 'sheet' can be an image or PDF path. Roles here are provisional guesses from the file names."
+}

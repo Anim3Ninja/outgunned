@@ -1,0 +1,13 @@
+> 14th of November, 1934
+
+# Dear Friend,
+
+This is where your opening letter goes: the hook, the job offer, the mysterious summons. Whatever gets your players leaning in.
+
+Keep it to a page or so. Short paragraphs read well on screen. A line beginning with # becomes a heading, and a line beginning with > is set to the right, like a date.
+
+Choose your file. Learn your companions' names. We leave at dawn.
+
+Yours in confidence,
+
+The Patron

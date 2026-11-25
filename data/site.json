@@ -1,0 +1,20 @@
+{
+  "title": "The Case Office",
+  "year": "1934",
+  "letter": "data/letter.txt",
+  "messages": "data/messages.txt",
+  "books": [
+    {
+      "title": "Quickstart Rules",
+      "subtitle": "Read this first",
+      "pdf": "assets/pdf/quickstart.pdf",
+      "color": "#7a2e2a"
+    },
+    {
+      "title": "Outgunned Adventure",
+      "subtitle": "The Full Rules",
+      "pdf": "assets/pdf/rulebook.pdf",
+      "color": "#2f4a3a"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# NOTICE BOARD
+
+NEXT SESSION: (date and time)
+
+BRING: your chosen file, a pencil, and a good excuse.
+
+HOUSE RULES: (add yours here)
+
+Edit data/messages.txt to change this page.
