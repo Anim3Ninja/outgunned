@@ -270,39 +270,72 @@ ${keys}
   /* ================= typed text engine ================= */
   const typedSeen = new Set();
   let activeTyping = null;
-  function toTyped(txt) {
-    return txt.replace(/^﻿/, '').replace(/\r\n?/g, '\n').split('\n').map((l) => {
+  // Turns the author's plain/markdown text into typed segments. Margin notes and
+  // "> quoted" annotations become handwritten segments; everything else is typed.
+  function toSegments(raw) {
+    const lines = raw.replace(/^﻿/, '').replace(/\r\n?/g, '\n').split('\n').map((l) =>
+      l.replace(/\*\*/g, '').replace(/☑/g, '[X]').replace(/◩/g, '[~]').replace(/☐/g, '[ ]')
+        .replace(/^(Candidate|Age and nationality|Present occupation|Proposed appointment)[\s ]+(?!:)/, '$1:  ')
+        .replace(/[ \t]+$/, ''));
+    const segs = []; let pend = false;
+    const push = (hand, t) => { const last = segs[segs.length - 1]; if (last && last.hand === hand) last.lines.push(t); else segs.push({ hand, lines: [t] }); };
+    const unwrap = (t) => t.replace(/^\s*[\[*]+\s*/, '').replace(/\s*[\]*]+\s*$/, '');
+    lines.forEach((l) => {
+      if (/^[\s*\[]*handwritten\b[^\n]*$/i.test(l) && l.trim().length < 48) { pend = true; return; }
+      if (pend && l.trim()) { pend = false; push(true, unwrap(l)); return; }
+      const q = l.match(/^>\s?(.*)$/);
+      if (q) { push(true, q[1]); return; }
       const m = l.match(/^#+\s+(.*)$/);
-      return m ? m[1].toUpperCase() + '\n' + '='.repeat(Math.min(m[1].length, 42)) : l;
-    }).join('\n').trim();
+      if (m) { push(false, m[1].toUpperCase()); push(false, '='.repeat(Math.min(m[1].length, 42))); return; }
+      if (pend) return;
+      push(false, l);
+    });
+    return segs.map((g) => ({ hand: g.hand, text: g.lines.join('\n').replace(/^\n+|\n+$/g, '') })).filter((g) => g.text);
   }
   function typeInto(host, raw, key) {
     if (activeTyping) activeTyping.stop();
-    const text = toTyped(raw);
-    const box = el('div', 'typed'), t = el('span'), cur = el('span', 'cur'), rest = el('span', 'rest');
-    rest.textContent = text; box.append(t, cur, rest); host.appendChild(box);
+    const segs = toSegments(raw);
+    const box = el('div', 'typed'), cur = el('span', 'cur');
+    let off = 0;
+    segs.forEach((g) => {
+      g.off = off; off += g.text.length;
+      g.box = el('div', 'seg' + (g.hand ? ' hand' : ''));
+      g.vis = el('span'); g.rest = el('span', 'rest'); g.rest.textContent = g.text;
+      g.box.append(g.vis, g.rest); box.appendChild(g.box);
+    });
+    host.appendChild(box);
+    const total = off;
+    const paint = (n) => segs.forEach((g) => {
+      const k = Math.max(0, Math.min(g.text.length, n - g.off));
+      g.vis.textContent = g.text.slice(0, k); g.rest.textContent = g.text.slice(k);
+      if (n > g.off && n <= g.off + g.text.length) g.vis.after(cur);
+    });
+    const allText = segs.map((g) => g.text).join('');
     let i = 0, raf = 0, last = performance.now(), acc = 0, over = false;
     const ctl = {
       stop() { over = true; cancelAnimationFrame(raf); box.removeEventListener('click', ctl.skip); document.removeEventListener('keydown', onKey); if (activeTyping === ctl) activeTyping = null; },
-      skip() { if (over) return; t.textContent = text; rest.textContent = ''; box.classList.add('done'); typedSeen.add(key); ctl.stop(); },
+      skip() { if (over) return; paint(total + 1); box.classList.add('done'); typedSeen.add(key); ctl.stop(); },
     };
     const onKey = (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); ctl.skip(); } };
+    paint(0); if (segs[0]) segs[0].vis.after(cur);
     if (typedSeen.has(key) || reduced) { ctl.skip(); return ctl; }
     activeTyping = ctl;
     box.addEventListener('click', ctl.skip); document.addEventListener('keydown', onKey);
-    const cps = Math.max(55, text.length / 16);
+    const handSpeed = (n) => { const g = segs.find((x) => n > x.off && n <= x.off + x.text.length); return g && g.hand ? 0.55 : 1; };
+    const cps = Math.max(55, total / 16);
     (function step(now) {
       if (over) return;
-      acc += ((now - last) * cps) / 1000; last = now;
+      acc += ((now - last) * cps * handSpeed(i + 1)) / 1000; last = now;
       const n = Math.floor(acc);
       if (n > 0) {
         acc -= n;
-        const nx = Math.min(text.length, i + n);
-        t.textContent = text.slice(0, nx); rest.textContent = text.slice(nx);
-        if (text[nx - 1] === '\n') tick(true); else if (nx % 2 === 0 && text[nx - 1] !== ' ') tick(false);
+        const nx = Math.min(total, i + n);
+        paint(nx);
+        const inHand = handSpeed(nx) < 1;
+        if (allText[nx - 1] === '\n') { if (!inHand) tick(true); } else if (nx % 2 === 0 && allText[nx - 1] !== ' ') { if (!inHand) tick(false); }
         i = nx;
         if (cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest' });
-        if (i >= text.length) { ctl.skip(); return; }
+        if (i >= total) { ctl.skip(); return; }
       }
       raf = requestAnimationFrame(step);
     })(performance.now());
