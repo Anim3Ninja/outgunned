@@ -58,30 +58,9 @@
 
   /* ================= scene decoration ================= */
   function buildScene() {
-    // venetian blind
-    let slats = '';
-    for (let y = 14; y < 118; y += 11) slats += `<rect x="14" y="${y}" width="332" height="9" fill="url(#slat)"/>`;
-    slats += `<rect x="14" y="118" width="332" height="7" fill="#b9a67a"/><path d="M300 125 V190" stroke="#d8c9a0" stroke-width="2"/><circle cx="300" cy="194" r="5" fill="#c9a34a"/>`;
-    $('#blind').innerHTML = slats;
-
-    // clock
-    let t = '';
-    for (let i = 0; i < 12; i++) {
-      const a = (i * 30 * Math.PI) / 180, r1 = i % 3 === 0 ? 52 : 58, r2 = 63;
-      t += `<line x1="${80 + Math.sin(a) * r1}" y1="${80 - Math.cos(a) * r1}" x2="${80 + Math.sin(a) * r2}" y2="${80 - Math.cos(a) * r2}" stroke-width="${i % 3 === 0 ? 3 : 1.6}"/>`;
-    }
-    $('#ticks').innerHTML = t;
-    const hh = $('#hHand'), mm = $('#mHand'), ss = $('#sHand');
-    const run = () => {
-      const d = new Date(), s = d.getSeconds(), m = d.getMinutes() + s / 60, h = (d.getHours() % 12) + m / 60;
-      hh.setAttribute('transform', `rotate(${h * 30} 80 80)`);
-      mm.setAttribute('transform', `rotate(${m * 6} 80 80)`);
-      ss.setAttribute('transform', `rotate(${s * 6} 80 80)`);
-    };
-    run(); setInterval(run, 1000);
-
-    // dust motes in the lamp light
-    for (const dust of [$('#dust'), $('#dust2')]) for (let i = 0; i < 22; i++) {
+    // dust motes drifting in the lamp light
+    const dust = $('#dust2');
+    for (let i = 0; i < 22; i++) {
       const p = el('i');
       p.style.left = Math.random() * 100 + '%'; p.style.top = 20 + Math.random() * 80 + '%';
       p.style.setProperty('--t', 8 + Math.random() * 10 + 's');
@@ -90,52 +69,6 @@
       p.style.animationDelay = -Math.random() * 12 + 's';
       dust.appendChild(p);
     }
-
-    // typewriter
-    $('#typeSvg').innerHTML = typewriterSVG();
-  }
-
-  function typewriterSVG() {
-    const rows = [['Q','W','E','R','T','Y','U','I','O','P'], ['A','S','D','F','G','H','J','K','L'], ['Z','X','C','V','B','N','M']];
-    const ys = [322, 350, 378], x0 = [107, 124, 158], step = 34;
-    let keys = '';
-    rows.forEach((r, ri) => r.forEach((ch, i) => {
-      const cx = x0[ri] + i * step, cy = ys[ri];
-      keys += `<g><circle cx="${cx}" cy="${cy + 2}" r="14" fill="rgba(0,0,0,.5)"/><circle cx="${cx}" cy="${cy}" r="14" fill="#101010" stroke="#c7ccd0" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="10" fill="#ebe2c8"/><text x="${cx}" y="${cy + 4}" text-anchor="middle" font-family="Special Elite,monospace" font-size="11" fill="#222">${ch}</text></g>`;
-    }));
-    return `<svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
-<defs>
- <linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34453c"/><stop offset=".5" stop-color="#1f2b25"/><stop offset="1" stop-color="#0f1612"/></linearGradient>
- <linearGradient id="rubber" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4a4a"/><stop offset=".4" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient>
- <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f7"/><stop offset=".5" stop-color="#9aa2a8"/><stop offset="1" stop-color="#d9dee1"/></linearGradient>
-</defs>
-<ellipse cx="260" cy="410" rx="240" ry="12" fill="rgba(0,0,0,.5)"/>
-<g class="sheet">
- <g transform="rotate(-1.2 260 90)">
-  <rect x="148" y="-14" width="224" height="196" fill="#f1e8cb"/>
-  <rect x="148" y="-14" width="224" height="196" fill="url(#tb)" opacity=".05"/>
-  <text x="260" y="22" text-anchor="middle" font-family="Special Elite,monospace" font-size="15" fill="#2a241c">NOTICE BOARD</text>
-  <path d="M170 30 H350" stroke="#2a241c" stroke-width="1.4"/>
-  <g stroke="#3b342a" stroke-width="3" opacity=".55" stroke-linecap="round"><path d="M168 52 H336"/><path d="M168 70 H318"/><path d="M168 88 H344"/><path d="M168 106 H300"/><path d="M168 124 H338"/><path d="M168 142 H284"/></g>
- </g>
-</g>
-<path d="M60 236 L460 236 L494 396 Q496 414 474 414 L46 414 Q24 414 26 396 Z" fill="url(#tb)"/>
-<path d="M60 236 L460 236" stroke="url(#chrome)" stroke-width="5"/>
-<path d="M44 306 L476 306" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
-<ellipse cx="150" cy="238" rx="38" ry="12" fill="#151515" stroke="url(#chrome)" stroke-width="3"/>
-<ellipse cx="370" cy="238" rx="38" ry="12" fill="#151515" stroke="url(#chrome)" stroke-width="3"/>
-<rect x="40" y="196" width="440" height="28" rx="14" fill="#111"/>
-<rect x="40" y="196" width="440" height="9" rx="4.5" fill="rgba(255,255,255,.18)"/>
-<rect x="64" y="166" width="392" height="34" rx="17" fill="url(#rubber)"/>
-<rect x="76" y="170" width="368" height="5" rx="2.5" fill="rgba(255,255,255,.2)"/>
-<circle cx="36" cy="183" r="17" fill="url(#chrome)"/><circle cx="36" cy="183" r="9" fill="#222"/>
-<circle cx="484" cy="183" r="17" fill="url(#chrome)"/><circle cx="484" cy="183" r="9" fill="#222"/>
-<path d="M54 172 L16 150" stroke="url(#chrome)" stroke-width="5" stroke-linecap="round"/><circle cx="14" cy="149" r="6" fill="#111"/>
-<rect x="206" y="252" width="108" height="30" rx="3" fill="#c9a34a"/><rect x="209" y="255" width="102" height="24" rx="2" fill="none" stroke="#7a5a22"/>
-<text x="260" y="272" text-anchor="middle" font-family="Playfair Display,serif" font-weight="700" font-size="13" letter-spacing="3" fill="#3a2a0c">No. 7</text>
-${keys}
-<rect x="170" y="396" width="180" height="14" rx="7" fill="#101010" stroke="url(#chrome)" stroke-width="3"/>
-</svg>`;
   }
 
 
@@ -164,39 +97,18 @@ ${keys}
   /* ================= stage fit + parallax ================= */
   const stage = $('#stage'), viewport = $('#viewport');
   function fit() {
-    const vw = innerWidth, vh = innerHeight;
-    const tall = vw / vh < 0.9;
-    const W = tall ? 900 : 1600;
-    stage.dataset.mode = tall ? 'tall' : 'wide';
-    stage.dataset.scene = tall ? 'office' : 'photo';
-    const hint = $('#hint'); if (hint && !hint.classList.contains('gone')) hint.textContent = tall ? 'Click the typewriter, the letter, the files and the books.' : 'Click the newspaper, the letter, the files, the books and the cabinet drawers.';
-    if (tall) {
-      const s = vw / W, vhh = Math.max(vh, Math.ceil(1620 * s));
-      viewport.style.height = vhh + 'px';
-      stage.style.width = W + 'px'; stage.style.height = Math.ceil(vhh / s) + 'px';
-      stage.style.transformOrigin = 'top center'; stage.style.top = '0';
-      stage.style.transform = `translateX(-50%) scale(${s})`;
-    } else {
-      const H = 900, s = Math.min(Math.max(vw / W, vh / H), vw / (0.84 * W));
-      viewport.style.height = vh + 'px';
-      stage.style.width = W + 'px'; stage.style.height = H + 'px';
-      stage.style.transformOrigin = 'center'; stage.style.top = '50%';
-      stage.style.transform = `translate(-50%,-50%) scale(${s})`;
-    }
+    const vw = innerWidth, vh = innerHeight, W = 1600, H = 900;
+    stage.dataset.mode = 'wide'; stage.dataset.scene = 'photo';
+    const portrait = vw / vh < 0.9;
+    const hint = $('#hint');
+    if (hint && !hint.classList.contains('gone')) hint.textContent = portrait ? 'Turn your device sideways for a bigger desk.' : 'Click the newspaper, the letter, the files, the books and the cabinet drawers.';
+    const s = Math.min(Math.max(vw / W, vh / H), vw / (0.84 * W));
+    viewport.style.height = vh + 'px';
+    stage.style.width = W + 'px'; stage.style.height = H + 'px';
+    stage.style.transformOrigin = 'center'; stage.style.top = '50%';
+    stage.style.transform = `translate(-50%,-50%) scale(${s})`;
   }
   addEventListener('resize', fit); fit();
-
-  if (!reduced && matchMedia('(pointer: fine)').matches) {
-    let raf = 0;
-    viewport.addEventListener('mousemove', (e) => {
-      if (raf || stage.dataset.scene === 'photo' || document.body.classList.contains('viewing')) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        stage.style.setProperty('--mx', ((e.clientX / innerWidth - 0.5) * 2).toFixed(3));
-        stage.style.setProperty('--my', ((e.clientY / innerHeight - 0.5) * 2).toFixed(3));
-      });
-    });
-  }
 
   /* ================= floating views ================= */
   const floatEl = $('#float');
@@ -380,8 +292,7 @@ ${keys}
       b.addEventListener('click', () => openPdf(p.title, p.pdf, b));
       pk.appendChild(b);
     });
-    const o = $('.o-type'); o.classList.add('lifted');
-    const v = openView({ from: stage.dataset.scene === 'photo' ? $('#newsBtn') : $('#typeSvg .sheet'), card, rot: 3, onClose: () => { if (activeTyping) activeTyping.stop(); o.classList.remove('lifted'); } });
+    const v = openView({ from: $('#newsBtn'), card, rot: 3, onClose: () => { if (activeTyping) activeTyping.stop(); } });
     if (txt) setTimeout(() => { if (views.includes(v)) typeInto($('.host', card), txt, 'notice'); }, reduced ? 0 : 650);
     else $('.host', card).remove();
   }
@@ -584,9 +495,7 @@ ${keys}
 
   /* ================= boot ================= */
   $('#letterBtn').addEventListener('click', openLetter);
-  $('#typeBtn').addEventListener('click', openNotice);
   $('#newsBtn').addEventListener('click', openNotice);
-  $('#handBtn').addEventListener('click', (e) => openDrawer(0, e.currentTarget));
   $$('.o-cab .drawer').forEach((b) => b.addEventListener('click', () => openDrawer(+b.dataset.i, b)));
   $('.env').style.setProperty('--me', homog(300, 190, LETTER_QUAD));
   $('#stackBtn').addEventListener('click', () => { if (chars.length) openDossier(); });

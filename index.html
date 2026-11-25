@@ -10,104 +10,14 @@
 </head>
 <body>
 <div id="viewport">
-  <div id="stage" class="stage" data-mode="wide">
+  <div id="stage" class="stage" data-mode="wide" data-scene="photo">
 
-    <!-- photo scene (wide screens) -->
+    <!-- the desk -->
     <div class="photo-scene" aria-hidden="true"></div>
     <div class="dust photo-only" id="dust2" aria-hidden="true"></div>
 
-    <!-- illustrated office (phones / tall screens) -->
-    <div class="procedural">
-    <div class="wall"><div class="wainscot"></div></div>
 
-    <div class="obj o-window" style="--d:4" aria-hidden="true">
-      <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c27a"/><stop offset=".6" stop-color="#e9a55b"/><stop offset="1" stop-color="#b9683a"/></linearGradient>
-          <linearGradient id="slat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8dcbd"/><stop offset=".7" stop-color="#cdbd96"/><stop offset="1" stop-color="#7d6e50"/></linearGradient>
-        </defs>
-        <rect x="0" y="0" width="360" height="300" rx="4" fill="#2b1a0e"/>
-        <rect x="14" y="14" width="332" height="272" fill="url(#sky)"/>
-        <g fill="#5a2f1c" opacity=".75"><rect x="20" y="190" width="40" height="96"/><rect x="66" y="160" width="34" height="126"/><rect x="108" y="205" width="52" height="81"/><rect x="170" y="150" width="30" height="136"/><rect x="206" y="185" width="46" height="101"/><rect x="258" y="140" width="38" height="146"/><rect x="302" y="200" width="40" height="86"/></g>
-        <g fill="#f6d9a0" opacity=".8"><rect x="74" y="172" width="5" height="7"/><rect x="86" y="190" width="5" height="7"/><rect x="266" y="154" width="5" height="7"/><rect x="278" y="176" width="5" height="7"/><rect x="178" y="166" width="5" height="7"/></g>
-        <!-- half-raised venetian blind -->
-        <g id="blind"></g>
-        <rect x="177" y="14" width="6" height="272" fill="#2b1a0e"/>
-        <rect x="14" y="142" width="332" height="6" fill="#2b1a0e"/>
-        <rect x="0" y="0" width="360" height="300" rx="4" fill="none" stroke="#6b4a2a" stroke-width="6"/>
-        <rect x="-8" y="286" width="376" height="14" fill="#4a2f19"/>
-      </svg>
-    </div>
 
-    <div class="obj o-clock" style="--d:4" aria-hidden="true">
-      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="80" cy="80" r="76" fill="#3a2412"/>
-        <circle cx="80" cy="80" r="68" fill="#efe3c3" stroke="#b58a3c" stroke-width="3"/>
-        <g id="ticks" stroke="#2b2118" stroke-linecap="round"></g>
-        <text x="80" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" fill="#5a4a38" letter-spacing="2">CASE OFFICE</text>
-        <line id="hHand" x1="80" y1="80" x2="80" y2="42" stroke="#1d1710" stroke-width="5" stroke-linecap="round"/>
-        <line id="mHand" x1="80" y1="80" x2="80" y2="26" stroke="#1d1710" stroke-width="3" stroke-linecap="round"/>
-        <line id="sHand" x1="80" y1="92" x2="80" y2="24" stroke="#a33a2c" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="80" cy="80" r="4" fill="#a33a2c"/>
-      </svg>
-    </div>
-
-    <div class="obj o-frame1" style="--d:5" aria-hidden="true"><div class="frame"><div class="cert"><b>CERTIFICATE</b><i></i><i></i><i></i><i></i><u></u></div></div></div>
-    <div class="obj o-frame2" style="--d:5" aria-hidden="true">
-      <div class="frame landscape">
-        <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="140" fill="#e4d3a6"/><g fill="none" stroke="#6b4a2a" stroke-width="1" opacity=".7"><path d="M10 100 C40 70 60 110 90 80 S150 60 190 90"/><path d="M12 60 C50 40 80 70 120 45 S170 30 192 50"/><path d="M20 125 C60 110 100 130 180 115"/></g><g transform="translate(150 38)" stroke="#5a2f1c" fill="none"><circle r="20"/><path d="M0 -26 V26 M-26 0 H26" /><path d="M0 -20 L5 0 L0 20 L-5 0Z" fill="#a33a2c" stroke="none"/></g></svg>
-      </div>
-    </div>
-    <div class="obj o-cabinet" style="--d:6" aria-hidden="true"><div class="cabinet"><i><b></b></i><i><b></b></i><i><b></b></i></div></div>
-
-    <!-- ===== DESK ===== -->
-    <div class="desk-edge"></div>
-    <div class="desk"><div class="desk-plane"></div></div>
-    <div class="light-beams" aria-hidden="true"></div>
-    <div class="lamp-glow" aria-hidden="true"></div>
-    <div class="dust" id="dust" aria-hidden="true"></div>
-
-    <div class="obj o-lamp" style="--d:10" aria-hidden="true">
-      <svg viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0f3a28"/><stop offset=".35" stop-color="#2f8a5a"/><stop offset="1" stop-color="#0d2f21"/></linearGradient>
-          <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a5a22"/><stop offset=".4" stop-color="#e3c26a"/><stop offset="1" stop-color="#6a4c1b"/></linearGradient>
-        </defs>
-        <ellipse cx="100" cy="324" rx="70" ry="12" fill="rgba(0,0,0,.45)"/>
-        <ellipse cx="100" cy="312" rx="56" ry="14" fill="url(#brass)"/>
-        <path d="M60 312 Q100 270 140 312Z" fill="url(#brass)"/>
-        <rect x="92" y="130" width="16" height="170" fill="url(#brass)"/>
-        <path d="M18 132 Q18 40 100 38 Q182 40 182 132 L172 142 L28 142Z" fill="url(#shade)"/>
-        <path d="M30 128 Q34 60 100 52 Q80 80 76 138Z" fill="rgba(255,255,255,.18)"/>
-        <path d="M28 142 H172" stroke="#e3c26a" stroke-width="4"/>
-        <ellipse cx="100" cy="146" rx="62" ry="8" fill="#ffe7a8" opacity=".9"/>
-      </svg>
-    </div>
-
-    <div class="obj o-ink" style="--d:12" aria-hidden="true">
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="50" cy="96" rx="40" ry="12" fill="rgba(0,0,0,.4)"/>
-        <path d="M14 70 Q14 100 50 100 Q86 100 86 70 L80 44 H20Z" fill="#1c2a35"/>
-        <path d="M20 44 H80 L84 54 Q50 64 16 54Z" fill="#2f4a5c"/>
-        <ellipse cx="50" cy="44" rx="30" ry="9" fill="#0b1117"/><ellipse cx="50" cy="44" rx="22" ry="6" fill="#050709"/>
-        <path d="M70 36 L108 6" stroke="#e8e0cc" stroke-width="4" stroke-linecap="round"/><path d="M66 40 L72 34" stroke="#b58a3c" stroke-width="6" stroke-linecap="round"/>
-        <path d="M108 6 l6 -6" stroke="#222" stroke-width="2"/>
-      </svg>
-    </div>
-
-    <div class="coffee-ring" aria-hidden="true"></div>
-    </div><!-- /procedural -->
-
-    <!-- TYPEWRITER (message board) -->
-    <div class="obj o-type" style="--d:14">
-      <button class="hit" id="typeBtn" aria-label="Read the notice board on the typewriter">
-        <span class="svgwrap" id="typeSvg"></span>
-        <span class="tag">Player’s Pack</span>
-      </button>
-    </div>
-
-    <!-- HANDOUTS drawer (phone/tall scene) -->
-    <div class="obj o-hand"><button class="hit" id="handBtn" aria-label="Open the player handouts drawer"><span class="hbox"><i></i><b>HANDOUTS</b></span></button><span class="tag">Player Handouts</span></div>
     <!-- HANDOUT DRAWERS on the card-index cabinet (photo scene) -->
     <div class="obj o-cab">
       <button class="drawer" data-i="0" style="top:264px;height:39px" aria-label="Open drawer: Letters and Telegrams"><span class="dlabel">Letters and Telegrams</span></button>
