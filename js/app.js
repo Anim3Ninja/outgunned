@@ -451,7 +451,7 @@
     } else {
       if (!c.sheet) return empty('CHARACTER SHEET', 'To be issued.');
       const wrap = el('div', 'sheet-view');
-      if (isPdf(c.sheet)) { wrap.innerHTML = `<iframe title="${esc(c.name)} character sheet" src="${esc(c.sheet)}"></iframe>`; page.style.padding = '0'; page.style.height = '100%'; wrap.style.height = '100%'; }
+      if (isPdf(c.sheet)) { wrap.innerHTML = `<div class="sheet-bar"><span>${esc(c.name)} — Adventurer Sheet</span><a target="_blank" rel="noopener" href="${esc(c.sheet)}">Open in new tab ↗</a><a download href="${esc(c.sheet)}">Download</a></div><iframe title="${esc(c.name)} character sheet" src="${esc(c.sheet)}"></iframe>`; page.style.padding = '0'; page.style.height = '100%'; wrap.style.height = '100%'; }
       else { wrap.innerHTML = `<img src="${esc(c.sheet)}" alt="Character sheet for ${esc(c.name)}" style="cursor:zoom-in">`; $('img', wrap).addEventListener('click', (e) => lightbox({ src: c.sheet, title: `${c.name} — Character Sheet` }, e.target, true)); }
       page.appendChild(wrap);
     }

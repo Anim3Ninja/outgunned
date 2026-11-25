@@ -15,7 +15,7 @@
       "documents": [],
       "backstory": "assets/characters/arthur-blackwood/backstory.txt",
       "assessment": "assets/characters/arthur-blackwood/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/arthur-blackwood/sheet.pdf",
       "number": 1,
       "short": "Blackwood",
       "blurb": "Arthur Blackwood is about 43 in 1934. He spent roughly fifteen years investigating serious crime in London and rose to Detective Inspector at Scotland Yard."
@@ -48,7 +48,7 @@
       ],
       "backstory": "assets/characters/jacques-moreau/backstory.txt",
       "assessment": "assets/characters/jacques-moreau/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/jacques-moreau/sheet.pdf",
       "number": 2,
       "short": "Moreau",
       "blurb": "Jacques Moreau is 35 in 1934. He makes his living carrying freight around the Mediterranean in a small vessel that once belonged to his father."
@@ -73,7 +73,7 @@
       ],
       "backstory": "assets/characters/edward-pembroke/backstory.txt",
       "assessment": "assets/characters/edward-pembroke/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/edward-pembroke/sheet.pdf",
       "number": 3,
       "short": "Pembroke",
       "blurb": "Edward Pembroke is 33 in 1934. He is the younger son of a British viscount, an Oxford lecturer in Egyptology, and the young archaeologist credited with discovering a side chamber near Cairo in 1926."
@@ -106,7 +106,7 @@
       ],
       "backstory": "assets/characters/evie-sullivan/backstory.txt",
       "assessment": "assets/characters/evie-sullivan/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/evie-sullivan/sheet.pdf",
       "number": 4,
       "short": "Sullivan",
       "blurb": "Evelyn Sullivan is 27 in 1934, a working-class Chicago woman who talked her way into the newspaper business and earned a place on its investigative beat. She’s blonde, lively and easy to talk to."
@@ -135,7 +135,7 @@
       ],
       "backstory": "assets/characters/jo-mercer/backstory.txt",
       "assessment": "assets/characters/jo-mercer/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/jo-mercer/sheet.pdf",
       "number": 5,
       "short": "Mercer",
       "blurb": "Josephine Mercer is 33 in 1934. She’s an African American freight driver and mechanic from Brooklyn who now makes her living hauling loads through Death Valley."
@@ -164,7 +164,7 @@
       ],
       "backstory": "assets/characters/charles-hargreaves/backstory.txt",
       "assessment": "assets/characters/charles-hargreaves/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/charles-hargreaves/sheet.pdf",
       "number": 6,
       "short": "Hargreaves",
       "blurb": "Major Charles Edmund Hargreaves is 60 in 1934. He’s a retired officer of the Royal Warwickshire Regiment, a veteran of two wars and a widower living near Leamington Spa."
@@ -193,7 +193,7 @@
       ],
       "backstory": "assets/characters/margaret-ashford/backstory.txt",
       "assessment": "assets/characters/margaret-ashford/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/margaret-ashford/sheet.pdf",
       "number": 7,
       "short": "Ashford",
       "blurb": "Margaret Ashford is 35 in 1934. She served undercover in the Great War, stayed in British military intelligence after the armistice and rose to Staff Sergeant before leaving the service."
@@ -222,7 +222,7 @@
       ],
       "backstory": "assets/characters/shenanigans-olier/backstory.txt",
       "assessment": "assets/characters/shenanigans-olier/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/shenanigans-olier/sheet.pdf",
       "number": 8,
       "short": "O’Lier",
       "blurb": "Shenanigans O’Lier is about 30 in 1934, an Irish-American expedition guide who works out of a small river-port town in the South American Amazon basin."
@@ -246,7 +246,7 @@
       "documents": [],
       "backstory": "assets/characters/sophie-whitfield/backstory.txt",
       "assessment": "assets/characters/sophie-whitfield/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/sophie-whitfield/sheet.pdf",
       "number": 9,
       "short": "Whitfield",
       "blurb": "Sophie Whitfield is 29 in 1934. She’s an Oxford-educated researcher who specialises in ancient Egyptian texts and the restoration of damaged manuscripts."
@@ -270,7 +270,7 @@
       "documents": [],
       "backstory": "assets/characters/walter-pritchard/backstory.txt",
       "assessment": "assets/characters/walter-pritchard/recruitment.txt",
-      "sheet": "",
+      "sheet": "assets/characters/walter-pritchard/sheet.pdf",
       "number": 10,
       "short": "Pritchard",
       "blurb": "Walter Pritchard is 26 in 1934, a Detroit-born air-racing champion, aircraft designer and one of the most recognisable faces in American aviation. He’s tall and athletic, with flowing beach-blond hair and a small, carefully kept moustache."

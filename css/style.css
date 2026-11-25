@@ -395,3 +395,9 @@ body:has(.stage[data-scene="photo"]) .vignette { background: radial-gradient(ell
 .pack-item b { display: block; font-size: 15px; letter-spacing: .04em; }
 .pack-item small { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
 .pack-item em { margin-left: auto; font-style: normal; font-size: 12px; letter-spacing: .1em; color: #8a2d22; white-space: nowrap; }
+
+.sheet-view { display: flex; flex-direction: column; }
+.sheet-view iframe { flex: 1; min-height: 0; width: 100%; border: 0; background: #fff; }
+.sheet-bar { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 8px 14px; background: #2a170c; font-family: var(--type); font-size: 13px; color: #f1ddb0; }
+.sheet-bar span { flex: 1; letter-spacing: .06em; text-transform: uppercase; }
+.sheet-bar a { color: #e6c47a; }

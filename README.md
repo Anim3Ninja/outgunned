@@ -1,29 +1,29 @@
 # The Case Office — Outgunned Adventure
 
-A 1930s office on screen: a typewriter notice board, a letter, a stack of character files (with portraits, backstories,
-recruitment assessments, photographs, documents and character sheets) and the rulebooks. Static site — works on GitHub Pages.
+A 1930s office desk on screen: a newspaper holding the player's pack (notice, blank adventurer sheet, travel journal),
+the invitation letter in its envelope, a stack of character dossiers (portrait, backstory, recruitment assessment,
+photographs, documents and a fillable adventurer sheet), the rulebooks, and a card-index cabinet whose five drawers hold
+the player handouts. Static site — works on GitHub Pages.
 
-## Scenes
-On wide screens the desk is a photo (`assets/scene/desk.jpg`); the folders and books in it are the clickable dossier stack and rulebooks, and the typewriter and letter sit on the desk. Phones and tall screens get the drawn office instead. To change the photo, replace `assets/scene/desk.jpg` (16:9) and adjust the positions in the `PHOTO SCENE` block at the end of `css/style.css`. Make sure you have the right to publish whichever image you use.
+## The desk
+The scene is a photo (`assets/scene/desk.jpg`, 16:9). Clickable areas are laid over the real objects in the `PHOTO SCENE`
+and `handout drawers` blocks at the end of `css/style.css`. Phones show the same desk, smaller. Make sure you have the right
+to publish whichever desk image you use.
 
 ## What to edit
 
 | What | Where |
 |---|---|
-| Opening letter | `data/letter.txt` (`# ` = heading, `> ` = right-aligned line such as a date) |
-| Typewriter notice board | `data/messages.txt` |
-| Each character's role and brief description | `data/characters.json` (`role`, `blurb`) — roles are provisional guesses |
-| Character sheets | put an image or PDF in the character's folder and set `sheet` in `data/characters.json` |
-| Backstory and recruitment assessment | plain `.txt` files, copied in by `Update-CharacterText.ps1` |
-| Rulebook PDFs | `assets/pdf/quickstart.pdf`, `assets/pdf/rulebook.pdf` (or edit `data/site.json`) |
+| Invitation letter (in the envelope) | `data/letter.txt` — `**bold**`, `*italic*`; an italic name line followed by the same name typed becomes a handwritten signature |
+| Notice on the newspaper | `data/messages.txt` |
+| Player's pack PDFs (newspaper) | `pack` list in `data/site.json`, files in `assets/pdf/` |
+| Handouts (cabinet drawers) | `data/handouts.json` — add `{ "title": "...", "src": "assets/handouts/<drawer>/file.jpg" }` to a drawer. Images, PDFs and `.txt` all work |
+| Each character's role and short description | `data/characters.json` (`role`, `blurb`) |
+| Backstory and recruitment assessment | `assets/characters/<name>/backstory.txt` and `recruitment.txt` (Markdown-style text is fine) |
+| Handwritten margin notes | in those files, a line `*Handwritten in the margin*` followed by the note, or any line starting `> ` |
+| Adventurer sheets | `assets/characters/<name>/sheet.pdf` (fillable PDF) |
+| Rulebook PDFs | `assets/pdf/quickstart.pdf`, `assets/pdf/rulebook.pdf` |
 | Site title / year | `data/site.json` |
-
-## Text files for the typed pages
-Keep them as `.txt` in `D:\Outgunned\Characters\<Name>\Backstory\` and `...\Recruitment Assessment\`, then run:
-
-    powershell -ExecutionPolicy Bypass -File .\Update-CharacterText.ps1
-
-Lines starting with `# ` become underlined typed headings. Blank lines separate paragraphs.
 
 ## Preview locally
     python -m http.server 8000
