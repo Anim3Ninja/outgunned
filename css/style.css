@@ -200,6 +200,10 @@ body.viewing .stage { filter: blur(3px) brightness(.55); }
   font-size: clamp(17px, 2.2vw, 20px); line-height: 1.7; }
 .letter-paper h2 { font-family: var(--disp); font-weight: 700; font-size: 1.5em; margin: .2em 0 .6em; }
 .letter-paper p { margin: 0 0 1em; }
+.letter-paper .lh { text-align: center; border-bottom: 2px double rgba(60,40,20,.5); padding-bottom: .8em; margin-bottom: 1.5em; }
+.letter-paper .lh b { display: block; font-family: var(--disp); letter-spacing: .22em; font-size: .95em; color: #2b1d12; }
+.letter-paper .lh i { display: block; margin-top: .35em; font-size: .85em; color: var(--ink-soft); }
+.letter-paper .sig { font-family: 'Hand', 'Segoe Script', cursive; font-size: 2em; line-height: 1; color: #1b2a5c; margin: .3em 0 -.2em; transform: rotate(-3deg); transform-origin: left bottom; }
 .letter-paper .r { text-align: right; font-style: italic; color: var(--ink-soft); }
 .letter-paper .head { text-align: center; font-family: var(--disp); letter-spacing: .3em; font-size: .8em; border-bottom: 2px double rgba(60,40,20,.5); padding-bottom: .7em; margin-bottom: 1.4em; color: var(--ink-soft); }
 

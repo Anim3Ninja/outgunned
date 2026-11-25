@@ -343,17 +343,28 @@ ${keys}
   }
 
   /* ================= LETTER ================= */
+  const inline = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[^\w*])\*([^*\n]+)\*(?![\w*])/g, '$1<i>$2</i>');
   function renderLetter(txt) {
-    return txt.split(/\n\s*\n/).map((b) => {
-      b = b.trim(); if (!b) return '';
+    const blocks = txt.replace(/^﻿/, '').replace(/\r\n?/g, '\n').split(/\n\s*\n/).map((b) => b.trim().replace(/[ \t]+\n/g, '\n')).filter(Boolean);
+    let head = '';
+    if (/^\*\*[^*]+\*\*/.test(blocks[0] || '') && !/[a-z]/.test((blocks[0].match(/^\*\*([^*]+)\*\*/) || [, ''])[1])) {
+      const [l1, ...rest] = blocks.shift().split('\n');
+      head = `<div class="lh"><b>${esc(l1.replace(/\*\*/g, ''))}</b>${rest.length ? `<i>${esc(rest.join(' ').replace(/\*/g, ''))}</i>` : ''}</div>`;
+    }
+    const body = blocks.map((b, k) => {
       if (b.startsWith('# ')) return `<h2>${esc(b.slice(2))}</h2>`;
-      if (b.startsWith('>')) return `<p class="r">${esc(b.replace(/^>\s?/gm, '')).replace(/\n/g, '<br>')}</p>`;
-      return `<p>${esc(b).replace(/\n/g, '<br>')}</p>`;
+      if (b.startsWith('>')) return `<p class="r">${inline(b.replace(/^>\s?/gm, '')).replace(/\n/g, '<br>')}</p>`;
+      const sig = b.match(/^\*([^*\n]+)\*$/);
+      if (sig && blocks[k + 1] && blocks[k + 1].startsWith(sig[1])) return `<p class="sig">${esc(sig[1])}</p>`;
+      return `<p>${inline(b).replace(/\n/g, '<br>')}</p>`;
     }).join('');
+    return { head, body };
   }
   async function openLetter() {
     const txt = (await fetchText(site.letter)) || '# Dear Friend,\n\nThe letter has not been written yet. Edit data/letter.txt.';
-    const card = el('div', 'card letter-card', `<button class="x" aria-label="Close the letter">×</button><article class="letter-paper"><div class="head">${esc((site.title || '').toUpperCase())}</div>${renderLetter(txt)}</article>`);
+    const L = renderLetter(txt);
+    const head = L.head || `<div class="head">${esc((site.title || '').toUpperCase())}</div>`;
+    const card = el('div', 'card letter-card', `<button class="x" aria-label="Close the letter">×</button><article class="letter-paper">${head}${L.body}</article>`);
     const o = $('.o-letter'); o.classList.add('lifted');
     openView({ from: $('.env'), card, rot: -5, onClose: () => o.classList.remove('lifted') });
   }
