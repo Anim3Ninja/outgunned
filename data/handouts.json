@@ -1,0 +1,30 @@
+{
+  "_help": "Each drawer holds items: {\"title\":\"...\",\"src\":\"assets/handouts/<drawer>/file.jpg\"}. Images, PDFs and .txt files all work.",
+  "drawers": [
+    {
+      "id": "letters",
+      "title": "Letters and Telegrams",
+      "items": []
+    },
+    {
+      "id": "maps",
+      "title": "Maps and Plans",
+      "items": []
+    },
+    {
+      "id": "news",
+      "title": "Newspapers and Clippings",
+      "items": []
+    },
+    {
+      "id": "official",
+      "title": "Official Documents",
+      "items": []
+    },
+    {
+      "id": "props",
+      "title": "Props and Visual Aids",
+      "items": []
+    }
+  ]
+}

@@ -16,5 +16,17 @@
       "pdf": "assets/pdf/rulebook.pdf",
       "color": "#2f4a3a"
     }
+  ],
+  "pack": [
+    {
+      "title": "Blank Adventurer Sheet",
+      "subtitle": "Print it or fill it in on screen",
+      "pdf": "assets/pdf/adventurer-sheet.pdf"
+    },
+    {
+      "title": "Travel Journal",
+      "subtitle": "Your expedition notebook",
+      "pdf": "assets/pdf/travel-journal.pdf"
+    }
   ]
 }

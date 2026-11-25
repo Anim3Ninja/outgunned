@@ -169,7 +169,7 @@ ${keys}
     const W = tall ? 900 : 1600;
     stage.dataset.mode = tall ? 'tall' : 'wide';
     stage.dataset.scene = tall ? 'office' : 'photo';
-    const hint = $('#hint'); if (hint && !hint.classList.contains('gone')) hint.textContent = tall ? 'Click the typewriter, the letter, the files and the books.' : 'Click the newspaper, the letter, the files and the books.';
+    const hint = $('#hint'); if (hint && !hint.classList.contains('gone')) hint.textContent = tall ? 'Click the typewriter, the letter, the files and the books.' : 'Click the newspaper, the letter, the files, the books and the cabinet drawers.';
     if (tall) {
       const s = vw / W, vhh = Math.max(vh, Math.ceil(1620 * s));
       viewport.style.height = vhh + 'px';
@@ -369,13 +369,55 @@ ${keys}
     openView({ from: $('.env'), card, rot: -5, onClose: () => o.classList.remove('lifted') });
   }
 
-  /* ================= NOTICE BOARD (typewriter) ================= */
+  /* ================= NEWSPAPER: notice + player's pack ================= */
   async function openNotice() {
-    const txt = (await fetchText(site.messages)) || '# NOTICE BOARD\n\nNothing has been typed yet. Edit data/messages.txt.';
-    const card = el('div', 'card notice-card', `<button class="x" aria-label="Close the notice">×</button><div class="sheet-paper"><div class="host"></div></div><span class="hint-skip">click or press space to skip the typing</span>`);
+    const txt = ((await fetchText(site.messages)) || '').trim();
+    const pack = site.pack || [];
+    const card = el('div', 'card news-card', `<button class="x" aria-label="Close the newspaper">×</button><div class="sheet-paper"><div class="host"></div>${pack.length ? `<div class="pack"><div class="pack-title">Player’s pack</div></div>` : ''}</div>${txt ? '<span class="hint-skip">click or press space to skip the typing</span>' : ''}`);
+    const pk = $('.pack', card);
+    pack.forEach((p) => {
+      const b = el('button', 'pack-item', `<span><b>${esc(p.title)}</b><small>${esc(p.subtitle || '')}</small></span><em>OPEN PDF</em>`);
+      b.addEventListener('click', () => openPdf(p.title, p.pdf, b));
+      pk.appendChild(b);
+    });
     const o = $('.o-type'); o.classList.add('lifted');
     const v = openView({ from: stage.dataset.scene === 'photo' ? $('#newsBtn') : $('#typeSvg .sheet'), card, rot: 3, onClose: () => { if (activeTyping) activeTyping.stop(); o.classList.remove('lifted'); } });
-    setTimeout(() => { if (views.includes(v)) typeInto($('.host', card), txt, 'notice'); }, reduced ? 0 : 650);
+    if (txt) setTimeout(() => { if (views.includes(v)) typeInto($('.host', card), txt, 'notice'); }, reduced ? 0 : 650);
+    else $('.host', card).remove();
+  }
+
+  /* ================= HANDOUT DRAWERS ================= */
+  let handouts = null;
+  async function openDrawer(i, from) {
+    if (!handouts) handouts = await fetch('data/handouts.json').then((r) => r.json()).catch(() => ({ drawers: [] }));
+    const dr = handouts.drawers || []; if (!dr[i]) return;
+    let at = i;
+    const card = el('div', 'card drawer-card', `<button class="x" aria-label="Close the drawer">×</button><h2></h2><div class="dtabs"></div><div class="dbody"></div>`);
+    const draw = () => {
+      const d = dr[at];
+      $('h2', card).textContent = d.title;
+      const tabs = $('.dtabs', card); tabs.innerHTML = '';
+      dr.forEach((x, k) => { const b = el('button', k === at ? 'on' : '', esc(x.title)); b.addEventListener('click', () => { at = k; draw(); }); tabs.appendChild(b); });
+      const body = $('.dbody', card); body.innerHTML = ''; body.scrollTop = 0;
+      const items = d.items || [];
+      if (!items.length) { body.innerHTML = '<p class="empty"><b>THIS DRAWER IS EMPTY</b><br>Nothing has been filed here yet.</p>'; return; }
+      const g = el('div', 'gallery docs');
+      items.forEach((it) => {
+        const kind = isPdf(it.src) ? 'PDF' : /\.txt$/i.test(it.src) ? 'TXT' : '';
+        const f = el('figure'); f.tabIndex = 0; f.setAttribute('role', 'button'); f.setAttribute('aria-label', `View: ${it.title}`);
+        f.innerHTML = `<div class="pic${kind ? ' kind' : ''}">${kind ? kind : `<img loading="lazy" src="${esc(it.src)}" alt="${esc(it.title)}">`}</div><figcaption>${esc(it.title)}</figcaption>`;
+        const open = async () => {
+          if (kind === 'PDF') openPdf(it.title, it.src, f);
+          else if (kind === 'TXT') { const t = await fetchText(it.src); const L = renderLetter(t || ''); openView({ from: f, card: el('div', 'card letter-card', `<button class="x" aria-label="Close">×</button><article class="letter-paper">${L.head}${L.body}</article>`), rot: -3 }); }
+          else lightbox(it, $('img', f), true);
+        };
+        f.addEventListener('click', open); f.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+        g.appendChild(f);
+      });
+      body.appendChild(g);
+    };
+    draw();
+    openView({ from, card, rot: -2 });
   }
 
   /* ================= DOSSIERS ================= */
@@ -528,14 +570,15 @@ ${keys}
     });
     wrap.appendChild(el('span', 'books-tag', 'Rulebooks'));
   }
-  async function openBook(bk, from) {
+  function openBook(bk, from) { return openPdf(bk.title, bk.pdf, from); }
+  async function openPdf(title, pdf, from) {
     const card = el('div', 'card pdf-card');
-    card.innerHTML = `<button class="x" aria-label="Close the book">×</button><div class="pdf-head"><h2>${esc(bk.title)}</h2><a target="_blank" rel="noopener" href="${esc(bk.pdf)}">Open in new tab ↗</a><a download href="${esc(bk.pdf)}">Download</a></div><div class="pdf-body" style="flex:1;display:flex;min-height:0"></div><p class="pdf-note">If the book doesn’t show (some phones can’t display PDFs here), use “Open in new tab”.</p>`;
+    card.innerHTML = `<button class="x" aria-label="Close">×</button><div class="pdf-head"><h2>${esc(title)}</h2><a target="_blank" rel="noopener" href="${esc(pdf)}">Open in new tab ↗</a><a download href="${esc(pdf)}">Download</a></div><div class="pdf-body" style="flex:1;display:flex;min-height:0"></div><p class="pdf-note">If it doesn’t show (some phones can’t display PDFs here), use “Open in new tab”.</p>`;
     const body = $('.pdf-body', card);
     let ok = true;
-    try { const r = await fetch(bk.pdf, { method: 'HEAD' }); ok = r.ok; } catch { ok = true; }
-    if (ok) body.innerHTML = `<iframe title="${esc(bk.title)}" src="${esc(bk.pdf)}" style="flex:1"></iframe>`;
-    else body.innerHTML = `<p class="empty"><b>NOT YET SHELVED</b><br>This book hasn’t been added to the office yet.</p>`;
+    try { const r = await fetch(pdf, { method: 'HEAD' }); ok = r.ok; } catch { ok = true; }
+    if (ok) body.innerHTML = `<iframe title="${esc(title)}" src="${esc(pdf)}" style="flex:1"></iframe>`;
+    else body.innerHTML = `<p class="empty"><b>NOT YET SHELVED</b><br>This hasn’t been added to the office yet.</p>`;
     openView({ from, card, rot: 3 });
   }
 
@@ -543,6 +586,8 @@ ${keys}
   $('#letterBtn').addEventListener('click', openLetter);
   $('#typeBtn').addEventListener('click', openNotice);
   $('#newsBtn').addEventListener('click', openNotice);
+  $('#handBtn').addEventListener('click', (e) => openDrawer(0, e.currentTarget));
+  $$('.o-cab .drawer').forEach((b) => b.addEventListener('click', () => openDrawer(+b.dataset.i, b)));
   $('.env').style.setProperty('--me', homog(300, 190, LETTER_QUAD));
   $('#stackBtn').addEventListener('click', () => { if (chars.length) openDossier(); });
   buildScene();
